@@ -8,113 +8,136 @@
  * @package shop
  * @subpackage reports
  */
-class ShopSideReport_FeaturedProducts extends SS_Report {
+class ShopSideReport_FeaturedProducts extends SS_Report
+{
 
-	public function title() {
-		return _t('ShopSideReport.FEATUREDPRODUCTS', "Featured Products");
-	}
+    public function title()
+    {
+        return _t('ShopSideReport.FEATUREDPRODUCTS', "Featured Products");
+    }
 
-	public function group() {
-		return _t('ShopSideReport.ShopGROUP', "Shop");
-	}
+    public function group()
+    {
+        return _t('ShopSideReport.ShopGROUP', "Shop");
+    }
 
-	public function sort() {
-		return 0;
-	}
+    public function sort()
+    {
+        return 0;
+    }
 
-	public function sourceRecords($params = null) {
-		return Product::get()->filter('Featured', 1)->sort("Title");
-	}
+    public function sourceRecords($params = null)
+    {
+        return Product::get()->filter('Featured', 1)->sort("Title");
+    }
 
-	public function columns() {
-		return array(
-			"Title" => array(
-				"title" => "Title",
-				"link" => true
-			)
-		);
-	}
+    public function columns()
+    {
+        return array(
+            "Title" => array(
+                "title" => "Title",
+                "link" => true
+            )
+        );
+    }
 }
 
 /**
  * All Products Report
  * @subpackage reports
  */
-class ShopSideReport_AllProducts extends SS_Report {
+class ShopSideReport_AllProducts extends SS_Report
+{
 
-	public function title() {
-		return _t('ShopSideReport.ALLPRODUCTS', "All Products");
-	}
+    public function title()
+    {
+        return _t('ShopSideReport.ALLPRODUCTS', "All Products");
+    }
 
-	public function group() {
-		return _t('ShopSideReport.ShopGROUP', "Shop");
-	}
-	public function sort() {
-		return 0;
-	}
+    public function group()
+    {
+        return _t('ShopSideReport.ShopGROUP', "Shop");
+    }
+    public function sort()
+    {
+        return 0;
+    }
 
-	public function sourceRecords($params = null) {
-		return Product::get()->sort('Title');
-	}
+    public function sourceRecords($params = null)
+    {
+        return Product::get()->sort('Title');
+    }
 
-	public function columns() {
-		return array(
-			"Title" => array(
-				"title" => "Title",
-				"link" => true
-			)
-		);
-	}
-
+    public function columns()
+    {
+        return array(
+            "Title" => array(
+                "title" => "Title",
+                "link" => true
+            )
+        );
+    }
 }
 
-class ShopSideReport_NoImageProducts extends SS_Report {
+class ShopSideReport_NoImageProducts extends SS_Report
+{
 
-	public function title() {
-		return _t('ShopSideReport.NOIMAGE',"Products with no image");
-	}
-	public function group() {
-		return _t('ShopSideReport.ShopGROUP', "Shop");
-	}
-	public function sort() {
-		return 0;
-	}
-	public function sourceRecords($params = null) {
-		return Product::get()->where("\"Product\".\"ImageID\" IS NULL OR \"Product\".\"ImageID\" <= 0")->sort("\"Title\" ASC");
-	}
-	public function columns() {
-		return array(
-			"Title" => array(
-				"title" => "Title",
-				"link" => true
-			)
-		);
-	}
+    public function title()
+    {
+        return _t('ShopSideReport.NOIMAGE', "Products with no image");
+    }
+    public function group()
+    {
+        return _t('ShopSideReport.ShopGROUP', "Shop");
+    }
+    public function sort()
+    {
+        return 0;
+    }
+    public function sourceRecords($params = null)
+    {
+        return Product::get()->where("\"Product\".\"ImageID\" IS NULL OR \"Product\".\"ImageID\" <= 0")->sort("\"Title\" ASC");
+    }
+    public function columns()
+    {
+        return array(
+            "Title" => array(
+                "title" => "Title",
+                "link" => true
+            )
+        );
+    }
 }
 
-class ShopSideReport_HeavyProducts extends SS_Report {
+class ShopSideReport_HeavyProducts extends SS_Report
+{
 
-	public function title() {
-		return _t('ShopSideReport.HEAVY',"Heavy Products");
-	}
-	public function group() {
-		return _t('ShopSideReport.ShopGROUP', "Shop");
-	}
-	public function sort() {
-		return 0;
-	}
-	public function sourceRecords($params = null) {
-		return Product::get()->where("\"Product\".\"Weight\" > 10")->sort("\"Weight\" ASC");
-	}
-	public function columns() {
-		return array(
-			"Title" => array(
-					"title" => "Title",
-					"link" => true
-			),
-			"Weight" => array(
-				'title' => 'Weight'
-			)
-		);
-	}
+    public function title()
+    {
+        return _t('ShopSideReport.HEAVY', "Heavy Products");
+    }
+    public function group()
+    {
+        return _t('ShopSideReport.ShopGROUP', "Shop");
+    }
+    public function sort()
+    {
+        return 0;
+    }
+    public function sourceRecords($params = null)
+    {
+        return Product::get()->where("\"Product\".\"Weight\" > 10")->sort("\"Weight\" ASC");
+    }
+    public function columns()
+    {
+        return array(
+            "Title" => array(
+                    "title" => "Title",
+                    "link" => true
+            ),
+            "Weight" => array(
+                'title' => 'Weight'
+            )
+        );
+    }
 }

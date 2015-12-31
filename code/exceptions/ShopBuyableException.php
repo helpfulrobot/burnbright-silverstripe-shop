@@ -4,6 +4,6 @@
  * @package shop
  * @subpackage exceptions
  */
-class ShopBuyableException extends Exception {
-	
+class ShopBuyableException extends Exception
+{
 }

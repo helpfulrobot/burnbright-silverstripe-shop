@@ -5,9 +5,10 @@
  * You can call it by issuing sendReceipt() in the Order class.
  * @deprecated 2.0 Use Email instead, and set template
  */
-class Order_ReceiptEmail extends Email {
+class Order_ReceiptEmail extends Email
+{
 
-	protected $ss_template = 'Order_ReceiptEmail';
+    protected $ss_template = 'Order_ReceiptEmail';
 }
 
 /**
@@ -15,8 +16,8 @@ class Order_ReceiptEmail extends Email {
  * in the report (eg. status changed to 'Shipped').
  * @deprecated 2.0 Use Email instead, and set template
  */
-class Order_StatusEmail extends Email {
+class Order_StatusEmail extends Email
+{
 
-	protected $ss_template = 'Order_StatusEmail';
-
+    protected $ss_template = 'Order_StatusEmail';
 }

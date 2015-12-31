@@ -7,38 +7,45 @@
  * @subpackage dashboard
  */
 if (class_exists('DashboardPanel')) {
-	class DashboardRecentMembersPanel extends DashboardPanel {
+    class DashboardRecentMembersPanel extends DashboardPanel
+    {
 
-		private static $exclude_status = array('Cart');
+        private static $exclude_status = array('Cart');
 
-		private static $db = array(
-			'Count' => 'Int',
-		);
-
-
-		public function getLabel() {
-			return _t('ShopDashboard.RecentAccounts', 'Recent Accounts');
-		}
+        private static $db = array(
+            'Count' => 'Int',
+        );
 
 
-		public function getDescription() {
-			return _t('ShopDashboard.RecentAccountsDescription', 'Shows recent account signups');
-		}
+        public function getLabel()
+        {
+            return _t('ShopDashboard.RecentAccounts', 'Recent Accounts');
+        }
 
 
-		public function getConfiguration() {
-			$fields = parent::getConfiguration();
-			$fields->push(TextField::create("Count", "Number of accounts to show"));
-			return $fields;
-		}
+        public function getDescription()
+        {
+            return _t('ShopDashboard.RecentAccountsDescription', 'Shows recent account signups');
+        }
 
 
-		public function Members() {
-			if ($this->Count == 0) $this->Count = 10;
-			$orders = Member::get()
-				->sort("Created", "DESC")
-				->limit($this->Count);
-			return $orders;
-		}
-	}
+        public function getConfiguration()
+        {
+            $fields = parent::getConfiguration();
+            $fields->push(TextField::create("Count", "Number of accounts to show"));
+            return $fields;
+        }
+
+
+        public function Members()
+        {
+            if ($this->Count == 0) {
+                $this->Count = 10;
+            }
+            $orders = Member::get()
+                ->sort("Created", "DESC")
+                ->limit($this->Count);
+            return $orders;
+        }
+    }
 }

@@ -5,11 +5,12 @@
  * @package shop
  * @subpackage tests
  */
-class ShopTest{
+class ShopTest
+{
 
-	public static function setConfiguration() {
-		$ds = DIRECTORY_SEPARATOR;
-		include BASE_PATH.$ds.SHOP_DIR.$ds.'tests'.$ds.'test_config.php';
-	}
-
+    public static function setConfiguration()
+    {
+        $ds = DIRECTORY_SEPARATOR;
+        include BASE_PATH.$ds.SHOP_DIR.$ds.'tests'.$ds.'test_config.php';
+    }
 }

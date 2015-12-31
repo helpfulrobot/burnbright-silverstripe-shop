@@ -2,66 +2,73 @@
 /**
  * Collects and stores data about the user. Keep this data in session.
  */
-class ShopUserInfo{
+class ShopUserInfo
+{
 
-	public static function singleton() {
-		static $singleton = null;
-		if($singleton === null){
-			$singleton = new ShopUserInfo();
-		}
-		return $singleton;
-	}
+    public static function singleton()
+    {
+        static $singleton = null;
+        if ($singleton === null) {
+            $singleton = new ShopUserInfo();
+        }
+        return $singleton;
+    }
 
-	private function __construct() {
+    private function __construct()
+    {
+    }
 
-	}
+    /**
+     * Get an array of location data
+     * @return array location data
+     */
+    public function getLocation()
+    {
+        return $this->getLocationData();
+    }
 
-	/**
-	 * Get an array of location data
-	 * @return array location data
-	 */
-	public function getLocation() {
-		return $this->getLocationData();
-	}
+    public function setLocation(array $location)
+    {
+        $this->setLocationData($location);
 
-	public function setLocation(array $location) {
-		$this->setLocationData($location);
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * Get location of user
+     * @param Address $address location
+     */
+    public function getAddress()
+    {
+        $address = null;
+        if ($data = $this->getLocationData()) {
+            $address = new Address();
+            $address->update($data);
+            $address->ID = 0; //ensure not in db
+        }
 
-	/**
-	 * Get location of user
-	 * @param Address $address location
-	 */
-	public function getAddress() {
-		$address = null;
-		if($data = $this->getLocationData()){
-			$address = new Address();
-			$address->update($data);
-			$address->ID = 0; //ensure not in db
-		}
+        return $address;
+    }
 
-		return $address;
-	}
+    /**
+     * Set location of user
+     * @param Address $address location
+     */
+    public function setAddress(Address $address)
+    {
+        $this->setLocationData($address->toMap());
 
-	/**
-	 * Set location of user
-	 * @param Address $address location
-	 */
-	public function setAddress(Address $address) {
-		$this->setLocationData($address->toMap());
+        return $this;
+    }
 
-		return $this;
-	}
+    protected function getLocationData()
+    {
+        $data = Session::get("UserInfo.Location");
+        return is_array($data) ? $data : array();
+    }
 
-	protected function getLocationData() {
-		$data = Session::get("UserInfo.Location");
-		return is_array($data) ? $data : array();
-	}
-
-	protected function setLocationData(array $data) {
-		Session::set("UserInfo.Location", Convert::raw2sql($data));
-	}
-
+    protected function setLocationData(array $data)
+    {
+        Session::set("UserInfo.Location", Convert::raw2sql($data));
+    }
 }

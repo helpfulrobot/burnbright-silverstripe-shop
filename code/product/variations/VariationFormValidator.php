@@ -4,20 +4,21 @@
  * @package shop
  */
 
-class VariationFormValidator extends RequiredFields {
+class VariationFormValidator extends RequiredFields
+{
 
-	public function php($data) {
-		$valid = parent::php($data);
+    public function php($data)
+    {
+        $valid = parent::php($data);
 
-		if($valid && !$this->form->getBuyable($_POST)) {
-			$this->validationError(
-				"","This product is not available with the selected options."
-			);
+        if ($valid && !$this->form->getBuyable($_POST)) {
+            $this->validationError(
+                "", "This product is not available with the selected options."
+            );
 
-			$valid = false;
-		}
+            $valid = false;
+        }
 
-		return $valid;
-	}
-
+        return $valid;
+    }
 }
